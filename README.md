@@ -1,9 +1,8 @@
-# git-pay
-An experimental debt system for me and my friends, exploiting git requests for financial safety and gits history for trust
+#git-pay
 
-
-| Attempt | #1 | #2 |
-| :---: | :---: | :---: |
-| Seconds | 301 | 283 |
-
-
+(Found 0 invalid transactions)
+| User | Worth |
+| :---: | :---: |
+| Simon | -0.12€ |
+| :---: | :---: |
+| Moritz | 0.12€ |
