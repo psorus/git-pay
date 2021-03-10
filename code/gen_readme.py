@@ -20,7 +20,7 @@ ret+=nl
 
 for key,val in k.items():
 
-    ret+=sam.replace("#a#",str(key)).replace("#b#",str(val/100))
+    ret+=sam.replace("#a#",str(key)).replace("#b#",str(val/100))+"\n"
 
 
 
