@@ -1,0 +1,6 @@
+This is a testing folder, to think about the following idea:
+
+given an easy to remember code, translate it into a private key (deterministacally [aka seed]), and a public key, capable of signing stuff
+
+
+will need a "push update" function to not need to transmit the key replacement to server
