@@ -42,8 +42,17 @@ class transaction(object):
         #s.sign=sk.sign(json.dumps(s.small_dict(),indent=2,sort_keys=True).encode())
     def verify(s,pk):
         return pk.verify(bytes.fromhex(s.sign),s._signbytes())
-    def save(s):
-        with open(f"../transactions/{s.hash()}.json","w") as f:
+    def save(s,fn=None):
+        if fn is None:
+            fn=f"../transactions/{s.hash()}.json"
+
+        with open(fn,"w") as f:
+            f.write(json.dumps(s.to_dict(),indent=2))
+    def save_no_overwride(s):
+        #fn=f"../users/{s.nam}.json"
+        fn=f"../transactions/{s.hash()}.json"
+        if os.path.isfile(fn):raise Exception("This already exists")
+        with open(fn,"w") as f:
             f.write(json.dumps(s.to_dict(),indent=2))
 
 def transaction_from_dict(q):
@@ -55,9 +64,32 @@ def load_transaction(q):
     with open(f"../transactions/"+q,"r") as f:
         return transaction_from_dict(json.loads(f.read()))
 
+def bistdir(pth):
+    """os.listdir but recursive"""
+
+    if len(pth)>0 and not pth[-1]=="/":
+        pth=pth+"/"
+
+    ret=[]
+
+    for fn in os.listdir(pth):
+        fn=pth+fn
+        if os.path.isfile(fn):
+            ret.append(fn)
+        else:
+            for zw in bistdir(fn):
+                ret.append(zw)
+
+    return ret
+
+
+
 def load_transactions():
     ret=[]
-    for fil in os.listdir("../transactions"):
+    for fil in bistdir("../transactions/"):
+        fil=fil[16:]#bad code to extend to work with subfolders
+        #print(fil)
+        #exit()
         ret.append(load_transaction(fil))
     return ret
 

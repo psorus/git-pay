@@ -15,7 +15,7 @@ print(u)
 while input("Is this ok?, enter 'y' to continue generating keys,strg+c to cancel")!="y":pass
 
 mn=gen_mnemonic()
-print("I generated your mnemonic. Remember it, it is not recoverable and you need it to sign all your transactiions!")
+print("I generated your mnemonic. Remember it, it is not recoverable and you need it to sign all your transactions!")
 print("The mnemonic is:")
 print("")
 print(mn)

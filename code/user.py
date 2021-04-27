@@ -23,6 +23,11 @@ class user(object):
         with open(f"../users/{s.nam}.json","w") as f:
             f.write(json.dumps(s.to_dict(),indent=2,sort_keys=True))
 
+    def save_no_overwride(s):
+        fn=f"../users/{s.nam}.json"
+        if os.path.isfile(fn):raise Exception("This already exists")
+        with open(fn,"w") as f:
+            f.write(json.dumps(s.to_dict(),indent=2,sort_keys=True))
 
 
 def user_from_dict(q):

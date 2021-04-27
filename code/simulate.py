@@ -3,6 +3,8 @@ from user import *
 
 from extract_pk import extract_pk
 
+from qtime import now
+
 
 def calculate():
     u=load_users()
@@ -13,6 +15,8 @@ def calculate():
 
     inv=0
 
+    time=now().q
+
     for tt in t:
         if not tt.fro in q.keys():
             inv+=1
@@ -20,10 +24,11 @@ def calculate():
         if not tt.too in q.keys():
             inv+=1
             continue
+        if tt.date>time:continue
         key=keys[tt.fro]
-        #if not tt.verify(key):
-        #    inv+=1
-        #    continue
+        if not tt.verify(key):
+            inv+=1
+            continue
         ac=tt.query()
         q[tt.fro]-=ac
         q[tt.too]+=ac
