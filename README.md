@@ -3,7 +3,7 @@
 (Found 0 invalid transactions)
 | User | Worth |
 | :---: | :---: |
-| Simon | 9939.88€ |
-| Moritz | 60.12€ |
-| dummy | -10012.0€ |
-| dummy2 | 12.0€ |
+| Simon | 9919.88€ |
+| Moritz | 80.12€ |
+| dummy | -10012.04€ |
+| dummy2 | 12.04€ |
