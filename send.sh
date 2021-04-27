@@ -1,3 +1,4 @@
+git pull
 git add ../users/*
 git add ../transactions/*
 git add ../README.md

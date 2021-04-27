@@ -9,11 +9,18 @@ from qtime import now
 def calculate():
     u=load_users()
     t=load_transactions()
+
+    inv=0
     
+    #against sundenattack
+    hashs=[zw.hash() for zw in t]
+    if len(list(set(hashs)))!=len(hashs):
+        inv=1
+
+
     q={zw.nam:zw.worth for zw in u}
     keys={zw.nam:extract_pk(zw.key) for zw in u}
 
-    inv=0
 
     time=now().q
 
