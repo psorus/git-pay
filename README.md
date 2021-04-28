@@ -1,6 +1,6 @@
 #git-pay
 
-(Found 0 invalid transactions)
+(Found 1 invalid transactions)
 | User | Worth |
 | :---: | :---: |
 | dummy | -10012.04€ |
