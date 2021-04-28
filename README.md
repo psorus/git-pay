@@ -1,9 +1,8 @@
 #git-pay
 
-(Found 1 invalid transactions)
+(Found 0 invalid transactions)
 | User | Worth |
 | :---: | :---: |
-| dummy | -10012.04€ |
-| Simon | -189570.12€ |
-| Moritz | 199570.12€ |
-| dummy2 | 12.04€ |
+| Simon | 12.8€ |
+| Yuriy | -12.8€ |
+| Moritz | 0.0€ |
