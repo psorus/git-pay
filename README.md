@@ -4,6 +4,6 @@
 | User | Worth |
 | :---: | :---: |
 | Simon | 25.6€ |
-| Lars | -12.8€ |
+| Lars | -22.8€ |
 | Yuriy | -12.8€ |
-| Moritz | 0.0€ |
+| Moritz | 10.0€ |
