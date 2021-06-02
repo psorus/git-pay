@@ -3,7 +3,8 @@
 (Found 0 invalid transactions)
 | User | Worth |
 | :---: | :---: |
-| Simon | 25.6€ |
-| Lars | -22.8€ |
-| Yuriy | -12.8€ |
-| Moritz | 10.0€ |
+| test | 0.0€ |
+| Simon | 57.15€ |
+| Lars | -52.95€ |
+| Yuriy | -19.2€ |
+| Moritz | 15.0€ |
