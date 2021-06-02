@@ -4,7 +4,7 @@
 | User | Worth |
 | :---: | :---: |
 | test | 0.0€ |
-| Simon | 57.15€ |
-| Lars | -52.95€ |
+| Simon | 69.15€ |
+| Lars | -64.95€ |
 | Yuriy | -19.2€ |
 | Moritz | 15.0€ |
