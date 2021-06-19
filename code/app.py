@@ -1,7 +1,8 @@
 from flask import Flask
 app=Flask(__name__)
+app.config.from_mapping(SECRET_KEY="*** you")
 
-from flask import request# import args
+from flask import request,session,redirect# import args
 
 
 from simulate import *
@@ -19,6 +20,9 @@ from webhelper import *
 import json
 import os
 
+from aes import encrypt,decrypt
+from store import *
+
 def push():
     gen_readme()
     os.system("../send.sh")
@@ -28,12 +32,18 @@ def push():
 
 @app.route("/")
 def central():
-    return '''<h1>Welcome to this git-pay instance</h1><br>
+    add=""
+    if "user" in session.keys():
+        add=f"<h1>Hi {session['user']}</h1>" 
+    return add+'''<h1>Welcome to this git-pay instance</h1><br>
 <p>To make a new entry click here <a href="/easy">here</a> (only do this if you trust the host)</p>
 <p>To view the current balances click <a href="/watch">here</a></p>
 <p>To register a new user click <a href="/new">here</a></p>
 <p>To add a transaction file directly (much safer than using the online guide) click <a href="/upload">here</a></p>
 <p>To add a user file directly (much safer than using the online guide) click <a href="/upload_user">here</a></p>
+<br>
+<p><a href="/login">Login</a></p>
+<p><a href="/reg">Register</a></p>
 
 
 '''
@@ -42,10 +52,13 @@ def with_go_back(t):
     return '<p><a href="/">Go Back<a></p>'+t
 
 def form_add_easy():
+    val=""
+    if "user" in session.keys():
+        val=session["user"]
     return generateform("easy",[
-        {"name":"fro","desc":"Who are you?"},
+        {"name":"fro","desc":"Who are you?","value":val},
         {"name":"too","desc":"Who do you want to pay?"},
-        {"name":"value","desc":"How much (whole number ct)?"},        {"name":"mne","desc":"Please add your mnemonic"}
+        {"name":"value","desc":"How much (whole number ct)?"},        {"name":"mne","desc":"Please add your mnemonic","value":"auto" if len(val)>0 else ""}
 
         ],"Save")#.replace("POST","GET")
 
@@ -59,6 +72,11 @@ def add_easy():
 
     fro,too,value,mne=[args[zw] for zw in ["fro","too","value","mne"]]
     
+    if len(mne)<10 or mne=="auto":
+        if "mne" in session.keys():
+            mne=session["mne"]
+
+
     value=int(value)
     if value<=0:
         return with_go_back("Nice try noob. Setting your Balance to -1 Million Euros. Please pay up as soon as you are able to.<br><br>Measuring your worth....<br><br>Estimation suggests that you wont be able to pay this back....<br><br>Contacting credit institutes.....<br><br>Not enough. Require Payback.....<br>Contacting dark net hitman...<br><br>Positive Confirmation...<br><br>In case of succesful assasination, your death will be billed to your closest Relative...<br><br><br>Good bye. Hope you are happy with our service.")
@@ -68,6 +86,7 @@ def add_easy():
     except:
         return with_go_back("This is not a valid mnemonic. Please try again or contact your nodes host")
     
+    #u=load_user(fro)
     try:
         u=load_user(fro)
     except:
@@ -123,6 +142,8 @@ def create_user():
     if not ("who" in args.keys()):return form_create_user()
 
     who=args["who"]#[args[zw] for zw in ["who"]]
+
+    who=who.strip()
 
     try:
         u=load_user(who)
@@ -243,6 +264,85 @@ def view_erbsunde():
 
     return with_go_back("This erbsunde was created. Enjoy paying for a century")
 
+
+
+def form_login():
+    return generateform("login",[
+        {"name":"user","desc":"Who are you?"},
+        {"name":"pass","typ":"password","desc":"Your Password"}
+
+        ],"Login")#.replace("POST","GET")
+
+
+@app.route("/login",methods=["POST","GET"])
+def create_login():
+    args=request.form
+    if not ("user" in args.keys()):return form_login()
+    if not ("pass" in args.keys()):return form_login()
+
+    user=args["user"]#[args[zw] for zw in ["who"]]
+    pwd=args["pass"]#[args[zw] for zw in ["who"]]
+
+    user=user.strip()
+
+    mne,val=load_store(user,pwd)
+    if not val:
+        return "This Password is wrong!"
+
+    session["user"]=user
+    session["mne"]=mne
+
+
+    return redirect("/")
+
+
+
+
+def form_reg():
+    return generateform("reg",[
+        {"name":"user","desc":"Who are you?"},
+        {"name":"pass","typ":"password","desc":"Your Password"},
+        {"name":"pass2","typ":"password","desc":"Please repeat this Password"},
+        {"name":"mne","desc":"Your Mnemonic"}
+
+        ],"Store")#.replace("POST","GET")
+
+
+@app.route("/reg",methods=["POST","GET"])
+def create_reg():
+    args=request.form
+    if not ("user" in args.keys()):return form_reg()
+    if not ("pass" in args.keys()):return form_reg()
+    if not ("pass2" in args.keys()):return form_reg()
+    if not ("mne" in args.keys()):return form_reg()
+
+    user=args["user"]#[args[zw] for zw in ["who"]]
+    pwd=args["pass"]#[args[zw] for zw in ["who"]]
+    pwd2=args["pass2"]#[args[zw] for zw in ["who"]]
+    mne=args["mne"]#[args[zw] for zw in ["who"]]
+
+    user=user.strip()
+
+    if not pwd==pwd2:
+        return "Those passwords are not equal"
+
+    if has_store(user):
+        return f"Already stored {user}"
+
+    save_store(user,mne,pwd)
+
+
+    session["user"]=user
+    session["mne"]=mne
+
+
+    return redirect("/")
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
 
 
 
