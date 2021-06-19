@@ -1,1 +1,1 @@
-gunicorn -b :4000 app:app
+gunicorn -b :4000 app:app --workers 4
