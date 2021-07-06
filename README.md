@@ -11,5 +11,5 @@
 | Lars | -61.45€ |
 | Yuriy | 12.01€ |
 | Kai | -22.2€ |
-| Judith | -19.5€ |
-| Moritz | 78.93€ |
+| Judith | 30.5€ |
+| Moritz | 28.93€ |
