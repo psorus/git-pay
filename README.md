@@ -7,9 +7,9 @@
 | Anna | -6.0€ |
 | test | 0.0€ |
 | Kevin | -97.2€ |
-| Simon | 151.34€ |
+| Simon | 150.34€ |
 | Lars | -61.45€ |
 | Yuriy | 10.09€ |
 | Kai | -22.2€ |
 | Judith | 30.5€ |
-| Moritz | 42.93€ |
+| Moritz | 43.93€ |
