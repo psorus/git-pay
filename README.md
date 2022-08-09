@@ -3,14 +3,14 @@
 (Found 0 invalid transactions)
 | User | Worth |
 | :---: | :---: |
-| Niklas | -19.0€ |
-| Anna | -7.0€ |
+| Niklas | -23.5€ |
+| Anna | -17.5€ |
 | test | 0.0€ |
-| Kevin | -133.2€ |
-| Simon | 208.34€ |
-| Lars | -9.45€ |
-| Yuriy | -2.91€ |
+| Kevin | -144.0€ |
+| Simon | 206.54€ |
+| Lars | -27.75€ |
+| Yuriy | -19.71€ |
 | test2 | 0.0€ |
-| Kai | -58.2€ |
-| Judith | -34.5€ |
-| Moritz | 99.93€ |
+| Kai | -69.0€ |
+| Judith | -54.0€ |
+| Moritz | 192.93€ |
