@@ -12,5 +12,5 @@
 | Yuriy | -19.71€ |
 | test2 | 0.0€ |
 | Kai | -69.0€ |
-| Judith | -54.0€ |
-| Moritz | 192.93€ |
+| Judith | -4.0€ |
+| Moritz | 142.93€ |
