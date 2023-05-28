@@ -4,9 +4,9 @@
 | User | Worth |
 | :---: | :---: |
 | Niklas | 0.0€ |
-| Yuriy | -20.11€ |
+| Yuriy | 0.69€ |
 | Kai | -18.0€ |
-| Moritz | 118.53€ |
+| Moritz | 97.73€ |
 | Simon | 22.94€ |
 | Judith | -62.5€ |
 | test | 0.0€ |
